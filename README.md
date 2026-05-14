@@ -180,3 +180,4 @@ Due to time constraints, a lot of features have not been implemented.
 3. Fill and track access logs
 4. Handle failed transactions
 5. Set flow for National ID and Phone number verification
+6. Mark Loan as fully repaid

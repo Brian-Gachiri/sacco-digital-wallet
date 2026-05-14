@@ -12,7 +12,7 @@ class SmsService
         $apiKey = config('services.expresssms.api_key');
 
         $message = urlencode($message);
-        $url = "https://bulksms.ims.co.ke/api/sms/send";
+        $url = "https://www.expresssms.co.ke/api/sms/send";
         $query = [
             'apikey' => $apiKey,
             'message' => $message,
