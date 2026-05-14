@@ -35,4 +35,17 @@ return [
         ],
     ],
 
+    'mpesa' => [
+        'consumer_key' => env('MPESA_CONSUMER_KEY'),
+        'consumer_secret' => env('MPESA_CONSUMER_SECRET'),
+        'passkey' => env('MPESA_PASSKEY'),
+        'environment' => env('MPESA_ENVIRONMENT', 'sandbox'),
+        'shortcode' => env('MPESA_SHORTCODE', '600995')
+    ],
+
+    'expresssms' => [
+        'api_key' => env('EXPRESS_SMS_API_KEY'),
+        'sender_id' => env('EXPRESS_SMS_SENDER_ID'),
+    ],
+
 ];

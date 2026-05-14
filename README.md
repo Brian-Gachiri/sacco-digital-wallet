@@ -1,58 +1,182 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ChezaCoop
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sacco Digital Wallet Application
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Make sure you have the following installed:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.4+
+- Composer
+- PostgreSQL
+- Git
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+# Clone the Project
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <repository-url>
+cd <project-folder>
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+# Install Dependencies
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+npm install
+```
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Environment Setup
 
-## Security Vulnerabilities
+Copy the example environment file:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cp .env.example .env
+```
 
-## License
+Generate the application key:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan key:generate
+```
+
+---
+
+# Configure PostgreSQL
+
+Copy the .env.example to .env file and update database, mpesa and express sms credentials in the .env file:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=your_database_name
+DB_USERNAME=your_postgres_username
+DB_PASSWORD=your_postgres_password
+
+EXPRESS_SMS_API_KEY=api_key_here
+
+
+MPESA_CONSUMER_KEY=consumer_key
+MPESA_CONSUMER_SECRET=secret
+MPESA_PASSKEY=passkey
+MPESA_ENVIRONMENT=sandbox
+MPESA_SHORTCODE=600995
+```
+
+---
+
+# Create the Database
+
+Using PostgreSQL:
+
+```sql
+CREATE DATABASE your_database_name;
+```
+
+Or via terminal:
+
+```bash
+createdb your_database_name
+```
+
+---
+
+# Run Database Migrations
+
+```bash
+php artisan migrate
+```
+
+---
+
+# Run the Application
+
+Start the Laravel development server:
+
+```bash
+php artisan serve
+```
+
+The application will be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+# Useful Commands
+
+Clear application cache:
+
+```bash
+php artisan optimize:clear
+```
+
+Check routes:
+
+```bash
+php artisan route:list
+```
+
+Run tests:
+
+```bash
+php artisan test
+```
+
+---
+
+# API Authentication (Sanctum)
+
+If using Laravel Sanctum:
+
+Run migrations:
+
+```bash
+php artisan migrate
+```
+---
+
+# Troubleshooting
+
+## Missing PHP Extensions
+
+If you encounter errors related to PHP extensions, enable them in your `php.ini`.
+
+Example:
+
+```ini
+extension=fileinfo
+extension=pdo_pgsql
+extension=pgsql
+```
+
+Then restart your terminal/server.
+
+Check loaded extensions:
+
+```bash
+php -m
+```
+
+---
+
+
+# TODO:
+
+Due to time constraints, a lot of features have not been implemented.
+
+1. Work on Manual reconciliation
+2. Test the payments and SMS
+3. Fill and track access logs
+4. Handle failed transactions
+5. Set flow for National ID and Phone number verification
