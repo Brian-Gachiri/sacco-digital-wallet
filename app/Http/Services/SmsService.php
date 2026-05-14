@@ -23,7 +23,7 @@ class SmsService
             $response = Http::get($url, $query);
             Log::info('IMS Bulk SMS sent', ['response' => $response]);
 
-            if ($response->status() == 200 && str_contains($response->body(), '""')) {
+            if ($response->status() == 200) {
                 return [
                     'success' => true,
                     'response' => $response,
